@@ -1,0 +1,242 @@
+*{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-smooth: auto;
+}
+body.login{
+    margin: auto;
+    padding: auto;
+    box-sizing: border-box;
+    background-image: url("/src/bg/loginbg.jpeg");
+    background-size: cover;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(209, 131, 206, 0.9);
+}
+
+.h1header{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.loginForm{
+    background-color: rgba(27, 26, 27, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 25%;
+    height: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: azure;
+    margin: 0;
+    padding: 0;
+    min-height: fit-content;
+    max-height: 50%;
+}
+
+.formHeader{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.inputForm{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    padding: 0.5em;
+    font-size: 1rem;
+    
+}
+
+.inputBlockUser{
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+.inputBlockPass{
+    display:flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+.inputBlockButton{
+    display:flex;
+    flex-direction: column;
+    font-size: 1rem;
+    text-align: center;
+}
+.primaryButton{
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: azure;
+    background-color: rgba(27, 26, 27, 0.9);
+}
+.primaryButton:hover{
+    background-color: rgba(190, 190, 190, 0.9);
+    color: black;
+}
+
+input[type="text"], input[type="password"]{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 24px;
+}
+
+.inputBlockRegister{
+    display:flexbox;
+    flex-direction: column;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.secondaryButton{
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: azure;
+    background-color: rgba(27, 26, 27, 0);
+}
+
+.secondaryButton:hover{
+    background-color: rgba(27, 26, 27, 0.3);
+    color: azure;
+}
+
+footer{
+    align-items: center;
+    text-align: center;
+    color: azure;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    align-self: center;
+    padding: 10px;
+    background-color: rgba(19, 17, 19, 0.9);
+}
+
+.inputBlockPassConf{
+    display:flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(235, 12, 255);
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 95%;
+    box-shadow: 1px 1px 20px 20px rgba(0, 0, 0, 0.65);
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1em;
+    align-items: center;
+}
+
+.logoimg{
+    width: 100px;
+    height: 100px;
+    margin: 1em;
+}
+
+.user{
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: rgba(132, 0, 255, 0.747);
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+}
+.welcomeuser{
+    font-weight: 600;
+    margin: 1em;
+    width: fit-content;
+}
+.appbody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(132, 0, 255, 0.685);
+    width: 100%;
+    height: 100%;
+    color: rgb(21, 22, 22);
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    min-height: fit-content;
+}
+
+.appname{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.searchbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1em;
+    height: 50%;
+}
+.searchtext{
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    min-width: fit-content;
+}
+.searchform{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+.searchbutton{
+    height: 24px;
+    width: 24px;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    background-color: white;
+    border: 0px solid black;
+    border-radius: 20px;
+}
+.searchwrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: azure;
+    height: 100%;
+}
+
+input[type="text"]{
+    border: 0px solid black;
+    border-radius: 20px;
+    outline: none;
+}

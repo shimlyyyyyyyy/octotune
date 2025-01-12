@@ -2,7 +2,6 @@ import os
 import tinytag
 import mysql.connector
 import pathlib
-import requests
 
 hostname="localhost"
 database="octotune"
@@ -28,20 +27,13 @@ def get_files():
 #https://pypi.org/project/tinytag/
 def get_artist(files = get_files()):
     artists = []
-
-    def query(payload):
-        response = requests.post(aigen, headers=headers, json=payload)
-        return response.json()
+    artist_set = set()
         
-    
     for each in files:
         tag = tinytag.TinyTag.get(each)
-        output = query({
-        "inputs": "You have a music streaming platform. Write an article about "+tag.artist+". Include information about the artist, their music, and their career.",
-        })
-        bio = output[0]
-        if tag.artist not in artists:
-            artists.append((tag.artist, str(bio)))
+        if tag.artist and tag.artist not in artist_set:
+            artists.append((tag.artist, 'placeholder'))
+            artist_set.add(tag.artist)
     return artists
 
 def push_artists(artists = get_artist()):
@@ -52,18 +44,19 @@ def push_artists(artists = get_artist()):
         database=database
     )
     sql = "INSERT INTO kuenstler (artistName, biografie) VALUES (%s, %s)"
-    mycursor= db.cursor()
+    mycursor = db.cursor()
     
     try:
         mycursor.executemany(sql, artists)
         db.commit()
+        print(mycursor.rowcount, "artists inserted.")
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     finally:
         mycursor.close()
         db.close() 
 
-    print(mycursor.rowcount, "artists inserted.")
+    
 
 
 #https://pypi.org/project/tinytag/
@@ -84,7 +77,7 @@ def push_songs(val = get_metadata()):
         database=database
     )
     sql = "INSERT INTO lied (songName, releaseDate, filePath, coverPath, genre, length, filetype) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    mycursor= db.cursor()
+    mycursor = db.cursor()
     try:
         mycursor.executemany(sql, val)
         db.commit()
