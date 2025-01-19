@@ -51,37 +51,34 @@
     	<div class="topbar">
 			<div class="title">
 				<img src="/src/logo/logonotext.png" alt="logo" class="logoimg">
-        <h1 class="appname">OctoTune</h1>
-      	</div>
-      	<div class="searchbar">
-        <form method="POST" class="searchform">
-          <div class="searchwrapper">
-            <input type="text" class="searchtext" placeholder="Search for songs, artists, albums...">
-            <input type="image" src="/src/img/search.png" class="searchbutton" name="search">
-          </div>
-        </form>
-      	</div>
-		  	<div class="user">
+        	<h1 class="appname">OctoTune</h1>
+      		</div>
+			<div class="searchbar">
+				<form method="POST" class="searchform">
+					<div class="searchwrapper">
+						<input type="text" class="searchtext" placeholder="Search for songs, artists, albums...">
+						<input type="image" src="/src/img/search.png" class="searchbutton" name="search">
+					</div>
+				</form>
+			</div>
+			<div class="user">
 				<?php echo welcomeUser(); ?>
 			</div>
-        </div>
-    </div>
-    <!-- sidebar -->
-    <div id="mydiv">
-	</div>
-    <!--main content-->
-	<main>
-		<div class="content">
-			<div class="contentheader">
-				<h2>Discover new music</h2>
-			</div>
-			<div class="songlist" id="songlist">
-				<!-- songs will be displayed here -->
-				 <script>listSongs();</script>
-			</div>
 		</div>
-	</main>
-    
-    	
+		<!-- sidebar -->
+		<div id="mydiv">
+		</div>
+		<!--main content-->
+		<main>
+			<div class="content">
+				<div class="contentheader">
+					<h2>Discover new music</h2>
+				</div>
+				<div class="songlist" id="songlist">
+					<!-- songs will be displayed here -->
+					<script>listSongs();</script>
+				</div>
+			</div>
+		</main>
   	</body>
 </html>

@@ -4,7 +4,6 @@ async function listSongs(params) {
 
     for (let index = 0; index < songsJson.length; ++index) {
         const song = songsJson[index];
-        const title = 0;
         const songElement = document.createElement('div');
         songElement.className = 'song';
         songElement.innerHTML = `
