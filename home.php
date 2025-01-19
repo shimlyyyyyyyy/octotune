@@ -42,8 +42,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>OctoTune</title>
-		<script src="/octotuneapp/src/App.js"></script>
 		<link rel="stylesheet" href="/src/css/style.css">
+		<script type="text/javascript" src="/src/js/listSongs.js"></script>
+		<link rel="shortcut icon" href="/src/logo/logonotext.png" type="image/x-icon">
   	</head>
   	<body class="appbody">
       	<!-- topbar -->
@@ -67,11 +68,20 @@
     </div>
     <!-- sidebar -->
     <div id="mydiv">
-      
-    </div>
-    	<script type="text/javascript" src="/octotuneapp/src/App.js">
-			App();
-
-		</script>
+	</div>
+    <!--main content-->
+	<main>
+		<div class="content">
+			<div class="contentheader">
+				<h2>Discover new music</h2>
+			</div>
+			<div class="songlist" id="songlist">
+				<!-- songs will be displayed here -->
+				 <script>listSongs();</script>
+			</div>
+		</div>
+	</main>
+    
+    	
   	</body>
-</html>'
+</html>
