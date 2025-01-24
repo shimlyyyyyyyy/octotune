@@ -35,29 +35,28 @@
   
   if (!isUserLoggedIn()) die("index.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
  	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>OctoTune</title>
-		<link rel="stylesheet" href="/src/css/style.css">
-		<script type="text/javascript" src="/src/js/listSongs.js"></script>
-		<link rel="shortcut icon" href="/src/logo/logonotext.png" type="image/x-icon">
+		<link rel="stylesheet" href="./src/css/style.css">
+		<script type="text/javascript" src="./src/js/listSongs.js"></script>
+		<link rel="shortcut icon" href="./src/logo/logonotext.png" type="image/x-icon">
   	</head>
   	<body class="appbody">
       	<!-- topbar -->
     	<div class="topbar">
 			<div class="title">
-				<img src="/src/logo/logonotext.png" alt="logo" class="logoimg">
+				<img src="./src/logo/logonotext.png" alt="logo" class="logoimg">
         	<h1 class="appname">OctoTune</h1>
       		</div>
 			<div class="searchbar">
 				<form method="POST" class="searchform">
 					<div class="searchwrapper">
 						<input type="text" class="searchtext" placeholder="Search for songs, artists, albums...">
-						<input type="image" src="/src/img/search.png" class="searchbutton" name="search">
+						<input type="image" src="./src/img/search.png" class="searchbutton" name="search">
 					</div>
 				</form>
 			</div>
@@ -65,20 +64,34 @@
 				<?php echo welcomeUser(); ?>
 			</div>
 		</div>
-		<!-- sidebar -->
-		<div id="mydiv">
-		</div>
+		
+		
 		<!--main content-->
 		<main>
-			<div class="content">
-				<div class="contentheader">
-					<h2>Discover new music</h2>
+			<div class="sidebarSonglistWrapper">
+				<!-- sidebar -->
+				<div class="sidebar">
 				</div>
-				<div class="songlist" id="songlist">
-					<!-- songs will be displayed here -->
-					<script>listSongs();</script>
+				<div class="spacebetweensideandlist">
+				</div>
+				<!--Songlist-->
+				<div class="songlistwrapper">
+					<div class="content">
+						<div class="contentheader">
+							<h2>Discover new music</h2>
+						</div>
+						<div class="songlist" id="songlist">
+							<!-- songs will be displayed here -->
+							<script>listSongs();</script>
+						</div>
+					</div>
 				</div>
 			</div>
 		</main>
+		<!--footer-->
+		<footer>
+			<div class="player">
+			</div>
+		</footer>
   	</body>
 </html>

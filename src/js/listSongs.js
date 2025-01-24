@@ -14,7 +14,7 @@ async function listSongs(params) {
                     Your browser does not support the audio element.
                 </audio>
             </div>
-            <div class="song__album">${song.album}</div>
+            <div class="song__album">${song.artistName}</div>
             <div class="song__year">${song.year}</div>
         `;
         document.querySelector('.songlist').appendChild(songElement);
