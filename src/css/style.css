@@ -183,7 +183,6 @@ footer{
 .appbody{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: rgba(170, 109, 163, 0.5);
     width: 100%;
@@ -262,17 +261,16 @@ footer{
 .sidebarSonglistWrapper{
     display: flex;
     flex: content;
-    height: 80%;
-    max-height: 80%;
+    height: 100%;
+    max-height: 100%;
     overflow: hidden;
 }
 
 main{
     min-width: fit-content;
     width: 95%;
-    display: flex;
     overflow: hidden;
-    height: 80%;
+    height: 65%;
 }
 
 .sidebar{
