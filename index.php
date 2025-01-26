@@ -76,13 +76,12 @@
 							setcookie("uuid", $uuid, 0, "/", "localhost", true);
 							header("Location: home.php");
 						}
-
 					}
 				?>
 			</form>
 		</div>
 	</main>
-	<footer>
+	<footer class="loginfooter">
 		<div>
 			<p>2024 OctoTune</p>
 		</div>

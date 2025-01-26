@@ -180,7 +180,7 @@ def get_metadata(files = get_files()):
     val = []
     for each in files:
         tag = tinytag.TinyTag.get(each)
-        val.append((tag.title, tag.year, each, each.replace(pathlib.Path(each).suffix, ".jpg"), tag.genre, tag.duration, pathlib.Path(each).suffix))
+        val.append((tag.title, tag.year, each, each.replace(pathlib.Path(each).suffix, ".jpeg"), tag.genre, tag.duration, pathlib.Path(each).suffix))
     return val
     
 def push_songs(val = get_metadata()):

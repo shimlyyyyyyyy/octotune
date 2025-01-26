@@ -86,7 +86,7 @@
 			</form>
 		</div>
 	</main>
-	<footer>
+	<footer class="loginfooter">
 		<div>
 			<p>2024 OctoTune</p>
 		</div>

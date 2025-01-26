@@ -118,7 +118,7 @@ input[type="text"], input[type="password"]{
     color: azure;
 }
 
-footer{
+.loginfooter{
     align-items: center;
     text-align: center;
     color: azure;
@@ -140,7 +140,7 @@ footer{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(177, 24, 200, 0.6);
+    background-color: rgba(63, 4, 73, 0.986);
     border: 1px solid black;
     border-radius: 20px;
     margin: 1em;
@@ -148,6 +148,7 @@ footer{
     box-shadow: 1px 1px 20px 20px rgba(0, 0, 0, 0.25);
     overflow:auto;
     height: 15%;
+    color: azure;
 }
 .title{
     height: 50%;
@@ -170,7 +171,7 @@ footer{
 .user{
     border: 2px solid black;
     border-radius: 50px;
-    background-color: rgba(132, 0, 255, 0.747);
+    background-color: rgb(94, 53, 133);
     margin: 1em;
     width: fit-content;
     box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.2);
@@ -184,10 +185,10 @@ footer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(170, 109, 163, 0.5);
+    background-color: #210d25;
     width: 100%;
     height: 100%;
-    color: rgb(21, 22, 22);
+    color: azure;
     margin: 0;
     padding: 0;
     position: fixed;
@@ -270,13 +271,13 @@ main{
     min-width: fit-content;
     width: 95%;
     overflow: hidden;
-    height: 65%;
+    height: 70%;
 }
 
 .sidebar{
     min-width: fit-content;
     width: 25%;
-    background-color: rgb(170, 109, 163);
+    background-color: rgb(168, 63, 168);
     overflow: auto;
     max-height: 100%;
     border: 1px solid black;
@@ -286,7 +287,7 @@ main{
     min-width: fit-content;
     width: 75%;
     text-align: center;
-    background-color: rgb(170, 109, 163);
+    background-color: rgb(168, 63, 168);
     overflow: auto;
     max-height: 100%;
     border: 1px solid black;
@@ -300,15 +301,26 @@ main{
 }
 
 .contentheader{
-    text-align: center;
-    width: auto;
-    height: 10%;
+    text-align:left;
     font-size: 1.5rem;
     font-weight: 600;
-    text-align: center;
+    margin: 0.3em;
+    border: 1px solid black;
+    width: auto;
+    min-height: fit-content;
+    max-height: 100px;
     position: static;
     z-index: 1;
-    background-color: rgb(170, 109, 163);
+    background-color: rgb(51, 37, 50);
+}
+.playerfooter{
+    width: 100%;
+    height: 10%;
+    background-color: rgb(168, 63, 168);
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    border: 1px solid black;
 }
 
 .player{
@@ -316,19 +328,220 @@ main{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 10%;
+    height: 100%;
     bottom: 0;
     z-index: 1;
-    
+
 }
-footer{
+
+.playercontent{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 10%;
-    background-color: rgba(170, 109, 163, 0.8);
+    height: 100%;
     bottom: 0;
     z-index: 1;
+}
+.playerinfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    bottom: 0;
+    z-index: 1;
+}
+.playercontrols{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    bottom: 0;
+    z-index: 1;
+    min-width: fit-content;
+}
+
+.playerbuttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    z-index: 1;
+    min-width: fit-content;
+}
+
+.playerbuttons button{
+    border-radius: 40px;
+    padding: 0.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: azure;
+    background-color: rgb(168, 63, 168);
+    margin: 0.5em;
+}
+
+.playerbuttons button img{
+    height: 30px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    width: 30px;
+    filter: invert(90%);
+}
+
+.playlists{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    margin: 1rem;
+    height: fit-content;
+    overflow: auto;
+    bottom: 0;
+    z-index: 1;
+    min-width: fit-content;
+    background-color: rgb(90, 61, 87);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+.playlist{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em;
+    padding: 0.5em;
     border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(53, 43, 52);
+    cursor: pointer;
+    z-index: 2;
+}
+.playerbuttons button:hover{
+    background-color: rgb(53, 43, 52);
+    color: azure;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    border-radius: 5px;
+    background: #555;
+    margin: 0.5em;
+}
+.song{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.6em;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(53, 43, 52);
+    cursor: pointer;
+    z-index: 2;
+    min-width: fit-content;
+    height: 2em;
+}
+.song img{
+    height: 15px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    width: 15px;
+    filter: invert(90%);
+    background-color: transparent;
+}
+.song button{
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: azure;
+    background-color: rgb(53, 43, 52);
+    margin: 0.5em;
+}
+.songbuttons{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    min-width: fit-content;
+}
+.song .songinfo{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    margin:0;
+    padding: 0;
+    align-items: center;
+    min-width: fit-content;
+    z-index: 1;
+    min-width: fit-content;
+}
+
+.song .songinfo {
+    margin: 1;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: azure;
+    justify-content: left;
+    align-items: start;
+}
+
+
+.song .songinfo h3{
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: azure;
+    align-items: left;
+}
+.song .songinfo h4{
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(192, 192, 192);
+    align-items: left;
+}
+.songcoverwrapper{
+    margin:1em;
+    height: 50px;
+    width: 50px;
+}
+.songcover{
+    min-width: 50px;
+    min-height: 50px;
+    box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.075);
+    background-color: rgba(0,0,0, 0.225);
+    border-radius: 50px;
 }

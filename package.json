@@ -1,0 +1,23 @@
+{
+  "name": "octotune",
+  "version": "1.0.0",
+  "description": "music web player",
+  "homepage": "https://github.com/shimlyyyyyyyy/octotune#readme",
+  "bugs": {
+    "url": "https://github.com/shimlyyyyyyyy/octotune/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shimlyyyyyyyy/octotune.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "shimlyyyyyyyy",
+  "type": "module",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "howler": "^2.2.4"
+  }
+}
