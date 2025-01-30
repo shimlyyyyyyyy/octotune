@@ -8,12 +8,11 @@ database="octotune"
 username="root"
 password=""
 
-
-
-
-
 aigen = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B"
 headers = {"Authorization": "Bearer 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"}
+
+def convert_path_to_forward_slashes(path):
+    return path.replace("\\", "/")
 
 def fill_album_table():
     db = mysql.connector.connect(
@@ -65,6 +64,7 @@ def fill_song_album_relation():
         # Gruppiere Lieder nach Album
         album_songs = {}
         for song_id, song_name, file_path in songs:
+            file_path = convert_path_to_forward_slashes(file_path)
             tag = tinytag.TinyTag.get(file_path)
             if tag.album and tag.album in albums:
                 if tag.album not in album_songs:
@@ -90,7 +90,6 @@ def fill_song_album_relation():
         mycursor.close()
         db.close()
 
-
 def fill_artist_album_relation():
     db = mysql.connector.connect(
         host=hostname,
@@ -111,6 +110,7 @@ def fill_artist_album_relation():
         for album_id, album_name in albums:
             files = [f for f in get_files() if tinytag.TinyTag.get(f).album == album_name]
             for file in files:
+                file = convert_path_to_forward_slashes(file)
                 tag = tinytag.TinyTag.get(file)
                 if tag.artist and tag.artist in artists:
                     relations.add((artists[tag.artist], album_id))
@@ -127,18 +127,13 @@ def fill_artist_album_relation():
         mycursor.close()
         db.close()
 
-
-
-
-#https://stackoverflow.com/questions/3964681/find-all-files-in-a-directory-with-extension-txt-in-python
 def get_files():
     paths = []
     for file in os.listdir("songs"):
         if file.endswith(".mp3"):
-            paths.append(os.path.join("songs", file))
+            paths.append(convert_path_to_forward_slashes(os.path.join("songs", file)))
     return paths
 
-#https://pypi.org/project/tinytag/
 def get_artist(files = get_files()):
     artists = []
     artist_set = set()
@@ -170,12 +165,6 @@ def push_artists(artists = get_artist()):
         mycursor.close()
         db.close() 
 
-    
-
-
-#https://pypi.org/project/tinytag/
-#https://www.w3schools.com/python/python_mysql_insert.asp
-#https://www.geeksforgeeks.org/how-to-get-file-extension-in-python/
 def get_metadata(files = get_files()): 
     val = []
     for each in files:
@@ -209,8 +198,6 @@ def getRelations():
         password=password,
         database=database
     )
-    # https://www.perplexity.ai/search/import-os-import-tinytag-impor-N9pjZjbFQS6YaM49o9Vp_w
-    # Fetch all artists and their corresponding songs
     sql_artists = "SELECT * FROM kuenstler"
     sql_songs = "SELECT * FROM lied"
     
@@ -228,17 +215,13 @@ def getRelations():
         relations = []
         
         for artist in artists:
-            artist_id = artist[0]  # Assuming the first column is the artist ID
+            artist_id = artist[0]
             for song in songs:
-                song_id = song[0]  # Assuming the first column is the song ID
-                
-                # Here you would define your logic to determine if an artist is related to a song
-                # For example, if the artist's name matches the song's artist tag
-                tag = tinytag.TinyTag.get(song[3])  # Assuming filePath is in the third column
-                if tag.artist == artist[1]:  # Assuming the second column is the artist name
+                song_id = song[0]
+                tag = tinytag.TinyTag.get(convert_path_to_forward_slashes(song[3]))
+                if tag.artist == artist[1]:
                     relations.append((artist_id, song_id))
         
-        # Insert relations into the database
         mycursor.executemany(relation_sql, relations)
         db.commit()
         
@@ -250,6 +233,7 @@ def getRelations():
     finally:
         mycursor.close()
         db.close()
+
 def clear_all_tables():
     db = mysql.connector.connect(
         host=hostname,
@@ -261,16 +245,13 @@ def clear_all_tables():
     mycursor = db.cursor()
     
     try:
-        # Deaktivieren der Fremdschlüsselüberprüfung
         mycursor.execute("SET FOREIGN_KEY_CHECKS = 0")
-        
-        # Hole alle Tabellennamen aus der Datenbank
         mycursor.execute("SHOW TABLES")
         tables = mycursor.fetchall()
         
         for table in tables:
             table_name = table[0]
-            if table_name == "benutzer":
+            if table_name == "benutzer" or table_name =="beinhalten" or table_name == "playlist" or table_name == "erstellen":
                 continue
             sql = f"TRUNCATE TABLE {table_name}"
             mycursor.execute(sql)
@@ -282,11 +263,9 @@ def clear_all_tables():
         print(f"Fehler beim Leeren der Tabellen: {err}")
     
     finally:
-        # Aktivieren der Fremdschlüsselüberprüfung
         mycursor.execute("SET FOREIGN_KEY_CHECKS = 1")
         mycursor.close()
         db.close()
-
 
 clear_all_tables()
 print(str(get_files()))

@@ -47,8 +47,120 @@
 		<script type="text/javascript" src="./src/js/listPlaylists.js"></script>
 		<script type="text/javascript" src="./node_modules/howler/dist/howler.js"></script>
 		<script>
+			let sound = null;
 			function setVolume(){
 				Howler.volume(document.getElementById("volume").value / 100);
+			}
+			function something(){
+				event.stopPropagation()
+				console.log("something");
+			}
+			function playSong(song, artist, path, cover){
+				sound = new Howl({
+					src: [path],
+					autoplay: true,
+					loop: false,
+					onplay: function(){
+						requestAnimationFrame(updateProgress);
+					}
+				});
+				const songtitle = document.getElementById("songtitle");
+				songtitle.innerHTML = "<nobr>"+song+"</nobr>";
+				const artistname = document.getElementById("artist");
+				artistname.innerHTML = "<nobr>"+artist+"</nobr>";
+				const songcover = document.getElementById("songcoverplaybar");
+				songcover.src = cover;
+				console.log(cover);
+				sound.play();
+				console.log(path);
+				function updateProgress() {
+					const progressbar = document.getElementById("progressbar");
+					var seek = sound.seek() || 0;
+					progressbar.style.width = (((seek / sound.duration()) * 100) || 0) + "%";
+					requestAnimationFrame(updateProgress);
+            	}
+
+			}
+			async function Songs(){
+				const songs = await getSongs();
+				console.log(songs);
+				const songlist = document.getElementById("songlist");
+				songlist.innerHTML = "";
+				for (let i = 0; i < songs.length; i++){
+					const song = songs[i];
+					const songdiv = document.createElement("div");
+					songdiv.classList.add("song");
+					console.log(song.filePath);
+					const filePath = song.filePath;
+					songdiv.innerHTML = `
+					<div class="songwrapper">
+						<div class="songbutton" onclick="playSong('${song.songName}', '${song.artistName}', '${song.filePath}', '${song.coverPath}')">
+							<div class="songcoverwrapper">
+								<img src="${song.coverPath}" alt="song" class="songcover">
+							</div>
+							<div class="songinfo">
+								<h3 class="songtitle">${song.songName}</h3>
+								<div class="artist" onclick="something()">${song.artistName}</div>
+							</div>
+						</div>
+						<div class="songbuttons">
+							<button class="songbutton" onclick="playSong('${song.songName}', '${song.artistName}', '${song.filePath}', '${song.coverPath}')">
+								<img src="./src/img/play.png" alt="play" class="songbuttonimg">
+							</button>
+							<button class="songbutton" onclick="addSongToPlaylist('${song.USID}', '1')">
+								<img src="./src/img/plus.png" alt="add" class="songbuttonimg">
+							</button>
+						</div>
+					</div>
+					`;
+					songlist.appendChild(songdiv);
+				}
+			}
+			function addSongToPlaylist(USID, UPID){
+				fetch("/src/php/addToPlaylist.php?USID=" + USID + "&UPID=" + UPID+ "", {
+					method: "POST"
+				});
+			}
+			async function showPlayListSongs(UPID){
+				const songs = await fetch("/src/php/getPlaylistSongs.php?UPID=" + UPID + "");
+				const songsJson = await songs.json();
+				console.log(songsJson);
+				const songlist = document.getElementById("songlist");
+				songlist.innerHTML = "";
+				const contentheader = document.getElementById("contentheader");
+
+				contentheader.innerHTML = `${songsJson[0]["playlistName"]}`;
+
+				for (let i = 0; i < songsJson.length; i++){
+					const song = songsJson[i];
+					const songdiv = document.createElement("div");
+					songdiv.classList.add("song");
+					console.log(song.filePath);
+					const filePath = song.filePath;
+					songdiv.innerHTML = `
+					<div class="songwrapper">
+						<div class="songbutton" onclick="playSong('${song.songName}', '${song.artistName}', '${song.filePath}', '${song.coverPath}')">
+							<div class="songcoverwrapper">
+								<img src="${song.coverPath}" alt="song" class="songcover">
+							</div>
+							<div class="songinfo">
+								<h3 class="songtitle">${song.songName}</h3>
+								<div class="artist" onclick="something()">${song.artistName}</div>
+							</div>
+						</div>
+						<div class="songbuttons">
+							<button class="songbutton" onclick="playSong('${song.songName}', '${song.artistName}', '${song.filePath}', '${song.coverPath}')">
+								<img src="./src/img/play.png" alt="play" class="songbuttonimg">
+							</button>
+							<button class="songbutton" onclick="addSongToPlaylist('${song.USID}', '1')">
+								<img src="./src/img/plus.png" alt="add" class="songbuttonimg">
+							</button>
+						</div>
+					</div>
+					`;
+					songlist.appendChild(songdiv);
+				}
+
 			}
 		</script>
   	</head>
@@ -78,14 +190,20 @@
 			<div class="sidebarSonglistWrapper">
 				<!-- sidebar -->
 				<div class="sidebar">
-					<div class="favorites">
-						
-					</div >
-					<div class="listeningHistory">
-					</div>
-					<div class="playlists" id="playlists">
-						<!-- playlists will be displayed here -->
-						<script>getPlaylists();</script>
+					<div class="sidebarwrapper">
+						<div class="favorites">
+							<button onclick="Songs()">Home</button>
+						</div>
+						<div class="favorites">
+							<button onclick="showFavorites()">Favorites</button>
+						</div >
+						<div class="listeningHistory">
+						</div>
+						<div class="playlists" id="playlists">
+							<!-- playlists will be displayed here -->
+							 <h3>Playlists</h3>
+							<script>getPlaylists();</script>
+						</div>
 					</div>
 				</div>
 				<div class="spacebetweensideandlist">
@@ -94,60 +212,13 @@
 				<div class="songlistwrapper">
 					<div class="content">
 						<div class="contentheader">
-							<h2>Discover new music</h2>
+							<h2 id="contentheader">Discover new music</h2>
 						</div>
 						<div class="songlist" id="songlist">
 							<!-- songs will be displayed here -->
 							<script>
-								async function Songs(){
-									
-
-									const songs = await getSongs();
-									console.log(songs);
-									const songlist = document.getElementById("songlist");
-									for (let i = 0; i < songs.length; i++){
-										const song = songs[i];
-										const songdiv = document.createElement("div");
-										songdiv.classList.add("song");
-										songdiv.innerHTML = `
-											<div class="songcoverwrapper">
-												<img src="${song.coverPath}" alt="song" class="songcover">
-											</div>
-											<div class="songinfo">
-												<h3 class="songtitle">${song.songName}</h3>
-												<h4 class="artist">${song.artistName}</h4>
-											</div>
-											<div class="songbuttons">
-												<button class="songbutton" onclick="playSong('${song.title}', '${song.artist}', '${song.path}')">
-													<img src="./src/img/play.png" alt="play" class="songbuttonimg">
-												</button>
-												<button class="songbutton" onclick="addSongToPlaylist('${song.title}', '${song.artist}', '${song.path}')">
-													<img src="./src/img/plus.png" alt="add" class="songbuttonimg">
-												</button>
-											</div>
-										`;
-										songlist.appendChild(songdiv);
-									}
-								}
-								Songs();
-								
-								
-								function sound(){
-									var sound = new Howl({
-										src: ['/songs/Shmunk.mp3'],
-										autoplay: false,
-										loop: false,
-									});
-									if (sound.playing()) {
-										sound.stop();
-									} else{
-										sound.play();
-									}
-
-								}
-								
+								Songs();	
 							</script>
-							<button onclick="sound()" class=""></button>
 						</div>
 					</div>
 				</div>
@@ -169,20 +240,23 @@
 								<img src="./src/img/next.png" alt="next" class="playerbuttonimg">
 							</button>
 						</div>
+					</div>
+					<div class="playerinfo">
+						<div class="songinfoplaybar">
+							<div class="songcoverwrapperplaybar">
+								<img src="./src/img/songcover.png" alt="song" id="songcoverplaybar" class="songcoverplaybar">
+							<div class="songandartistplaybar">
+								<h3 class="songtitleplaybar" id="songtitle">Song Title</h3>
+								<h4 class="artistplaybar" id="artist">Artist</h4>
+							</div>
+						</div>
 						<div class="playerprogress">
 							<div class="progress">
 								<div class="progressbar" id="progressbar"></div>
 							</div>
 						</div>
-					</div>
-					<div class="playerinfo">
-						<div class="songinfo">
-							<h3 class="songtitle" id="songtitle">Song Title</h3>
-							<h4 class="artist" id="artist">Artist</h4>
-						</div>
 						<div class="volumecontrol">
 							<input type="range" class="volume" id="volume" min="0" max="100" value="100" onclick="setVolume()">
-							
 						</div>
 					</div>
 				</div>

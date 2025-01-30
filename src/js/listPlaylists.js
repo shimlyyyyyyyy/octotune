@@ -8,9 +8,8 @@ async function getPlaylists(){
         const playlistElement = document.createElement('div');
         playlistElement.className = 'playlist';
         playlistElement.innerHTML = `
-            <div class="playlist__title">${playlist.playlistName}</div>
-            <div class="playlist__songs">
-                <button class="playlist__songs__button" onclick="listSongs()">Show Songs</button>
+            <div onclick="showPlayListSongs(${playlist.UPID})" class="playlistbutton">
+                <div class="playlist_title">${playlist.playlistName}</div>
             </div>
         `;
         document.querySelector('.playlists').appendChild(playlistElement);
