@@ -4,10 +4,10 @@
   	<meta charset="UTF-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login - Octotune</title>
-	<link rel="stylesheet" href="/src/css/style.css">
+	<link rel="stylesheet" href="./src/css/style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="shortcut icon" href="/src/logo/logonotext.png" type="image/x-icon">
+	<link rel="shortcut icon" href="./src/logo/logonotext.png" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body class="login">
@@ -16,7 +16,7 @@
 	</header>
 	<main>
 		<div class="loginForm">
-			<h2 class="formHeader">Register</h2><br>
+			<h2 class="formHeader">Register</h2>
 			<form method="post" class="inputForm">
 				<div class="inputBlockUser">
 					<label for="username" >Username</label>
@@ -78,9 +78,7 @@
                         }
                         else{
                             echo "<h2 style='text-align: center;'>Username already taken!</h2>";
-                        }
-                        
-						
+                        }	
 					}
 				?>
 			</form>

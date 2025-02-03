@@ -13,7 +13,13 @@
             on playlist.UPID = beinhalten.UPID
             inner join lied
             on beinhalten.USID = lied.USID
-            where playlist.UPID = '$upid'";
+            inner join komponieren
+            on komponieren.USID = lied.USID
+            inner join kuenstler
+            on kuenstler.UArtID = komponieren.UArtID
+            where playlist.UPID = '$upid'
+            order by beinhalten.`order`";
+            
         $result = $conn->query($sql);
         
         $songs = array();

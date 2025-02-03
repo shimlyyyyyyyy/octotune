@@ -275,13 +275,14 @@ main{
 }
 
 .sidebar{
-    min-width: fit-content;
+    min-width: 25%;
     width: 25%;
     background-color: rgb(168, 63, 168);
     overflow: auto;
     max-height: 100%;
     border: 1px solid black;
     border-radius: 10px;
+    max-width: 40%;
 }
 .songlistwrapper{
     min-width: fit-content;
@@ -313,6 +314,11 @@ main{
 }
 .volumecontrol{
     margin: 1em;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 120px;
 }
 input[type="range"]{
     width: 100%;
@@ -340,6 +346,7 @@ input[type="range"]{
     height: 50px;
     width: 50px;
     align-items: center;
+    z-index: 10;
     
 }
 
@@ -357,7 +364,7 @@ input[type="range"]{
     background-color: rgba(51, 37, 50, 0.8);
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
-    width: 85%;
+    width: 95%;
     box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);
 }
 .favorites button{
@@ -369,6 +376,7 @@ input[type="range"]{
     cursor: pointer;
     color: azure;
     background-color: rgba(51, 37, 50, 0.9);
+    border: 1px solid black;
 }
 .spacebetweensideandlist{
     min-width: 3%;
@@ -411,6 +419,7 @@ input[type="range"]{
     bottom: 0;
     z-index: 1;
     border: 1px solid black;
+    overflow: hidden;
 }
 
 .player{
@@ -449,7 +458,7 @@ input[type="range"]{
     width: 20%;
     height: 100%;
     bottom: 0;
-    z-index: 1;
+    z-index: 10;
     min-width: fit-content;
 }
 
@@ -484,7 +493,15 @@ input[type="range"]{
     width: 30px;
     filter: invert(90%);
 }
+.playlistbutton{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    color: azure;
+    margin: 0.5em;
+    width: 100%;
 
+}
 .playlists{
     display: flex;
     flex-direction: column;
@@ -495,12 +512,12 @@ input[type="range"]{
     overflow: auto;
     bottom: 0;
     z-index: 1;
-    min-width: fit-content;
     background-color: rgba(51, 37, 50, 0.8);
     border: 1px solid rgb(0, 0, 0);
     box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    width: 85%;
+    width: 95%;
+    max-width: 95%;
 }
 .playlist{
     display: flex;
@@ -554,7 +571,7 @@ input[type="range"]{
     margin: 0.5em;
 }
 .song{
-  display: flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0.6em;
@@ -661,10 +678,9 @@ input[type="range"]{
     position: absolute;
     top: 0;
     left: 0;
-    width: 0%;
+    width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    z-index: -1;
+    z-index: 0;
 }
 .artist{
     margin: 0;
@@ -710,6 +726,8 @@ input[type="range"]{
 }
 .playlist_title{
     overflow: hidden;
+    width: 100% !important;
+
 }
 .songtitleplaybar{
     margin: 0;
@@ -722,6 +740,81 @@ input[type="range"]{
     color: rgb(192, 192, 192);
 }
 .artistplaybar:hover{
-    color: rgb(111, 0, 255);
+    color: rgb(0, 162, 255);
     cursor: pointer;
+}
+.volumecontrol img{
+    height: 24px;
+    margin: 1em;
+    align-items: center;
+    width: 24px;
+    filter: invert(90%);
+}
+
+.playlist_delete{
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    height: 100%;
+    z-index: -1;
+    min-width: fit-content;
+}
+
+.playlist_delete img{
+    height: 24px;
+    align-items: end;
+    width: 24px;
+    filter: invert(90%);
+}
+
+.createplaylistwrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 4em;
+    z-index: 1;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+.createplaylist{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.createplaylist input[type="text"]{
+    background-color: rgb(53, 43, 52);
+    color : rgba(240, 255, 255, 0.9);
+    font-size: 1.5rem;
+    font-weight:600;
+    border: none;
+    margin: auto;
+    padding: 1rem;
+    max-width: 80%;
+}
+
+.createplaylist button{
+    border-radius: 10px;
+    background-color: rgb(53, 43, 52);
+    border: none;
+    color : rgba(240, 255, 255, 0.9);
+    height: 95%;
+    width: 20%;
+    margin: auto;
+    padding: 0;
+}
+.createplaylist button:hover{
+    background-color: rgb(32, 27, 32);
+    color: azure;
+    cursor: pointer;
+}
+.createplaylistwrapper nobr{
+    width : 100%;
+    height: 100%;
 }

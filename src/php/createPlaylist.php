@@ -5,9 +5,19 @@
     const dbname = "octotune";
     try {
         $conn = new PDO("mysql:host=".servername."; dbname=".dbname, username, password);
-        
-        $usid = $_GET['USID'];
-        $upid = $_GET['UPID'];
+        $uuid = $_COOKIE['uuid'];
+        $playlistname = $_POST['playlistname'];
+
+        $sql = "
+            INSERT INTO playlist (name)
+            VALUES ('$playlistname')";
+        $conn->exec($sql);
+
+        $newUPID = $conn->lastInsertId();
+
+        $sql = "
+            INSERT INTO erstellen (UUID, UPID)
+            VALUES ('$uuid', '$newUPID')";
 
         // Get the current maximum order value for the playlist
         $sql = "SELECT MAX(`order`) as max_order FROM beinhalten WHERE UPID = '$upid'";
