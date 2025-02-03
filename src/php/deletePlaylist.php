@@ -6,8 +6,16 @@
     try {
         $conn = new PDO("mysql:host=".servername."; dbname=".dbname, username, password);
         
-        $usid = $_GET['USID'];
         $upid = $_GET['UPID'];
+        $uuid = $_COOKIE['uuid'];
+        
+        $sql = "
+            DELETE FROM erstellen
+            WHERE UUID = '$uuid' 
+            AND UPID = '$upid'
+        ";
+        $conn->exec($sql);
+
 
         $sql = "
             DELETE FROM playlist
@@ -16,6 +24,6 @@
         $conn->exec($sql);
     }
     catch (Exception $e) {
-        echo "$e";
+        echo (string)$e;
     }
 ?>

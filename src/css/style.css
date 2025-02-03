@@ -300,11 +300,8 @@ main{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 1rem;
-    height: fit-content;
     bottom: 0;
     z-index: 1;
-    min-width: fit-content;
     background-color: rgb(90, 61, 87);
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
@@ -756,7 +753,7 @@ input[type="range"]{
     justify-content: right;
     align-items: flex-end;
     height: 100%;
-    z-index: -1;
+    z-index: 500;
     min-width: fit-content;
 }
 

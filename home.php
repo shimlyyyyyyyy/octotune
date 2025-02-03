@@ -293,21 +293,22 @@
 				}
 
 			}
+
 			async function createPlaylist(){
 				const playlistname = document.getElementById("playlistname").value;
-				const response = await fetch("/src/php/createPlaylist.php?playlistname=" + playlistname + "", {
-					method: "POST"
-				});
+				const response = await fetch(`./src/php/createPlaylist.php?playlistname=${playlistname}`)
 				getPlaylists();
 			}
 
 
-			function deletePlaylist(UPID){
+			async function deletePlaylist(UPID){
 				event.stopPropagation();
-				fetch("/src/php/deletePlaylist.php?UPID=" + UPID + "", {
-					method: "POST"
-				});
+				await fetch(`/src/php/deletePlaylist.php?UPID=${UPID}`);
 				getPlaylists();
+			}
+
+			async function showListeningHistory(){
+				//mach ich morgen
 			}
 		</script>
   	</head>
@@ -340,6 +341,9 @@
 						<div class="favorites">
 							<button onclick="showFavorites()">Favorites</button>
 						</div >
+						<div class="favorites">
+							<button onclick="showListeningHistory()">Listening History</button>
+						</div >
 						<div class="listeningHistory">
 						</div>
 						<div class="playlists" id="playlists">
@@ -352,7 +356,7 @@
 										<button onclick="createPlaylist()">Create</button>
 									</div>
 								</nobr>
-							 </div>
+							 </div> 
 							 <div class="playlistlist" id="playlistlist">
 								 <script>getPlaylists();</script>
 							 </div>

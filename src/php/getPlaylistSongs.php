@@ -8,7 +8,7 @@
         $upid = $_GET['UPID'];
 
         $sql = "
-            SELECT * 
+            SELECT * , playlist.playlistName
             FROM playlist inner join beinhalten
             on playlist.UPID = beinhalten.UPID
             inner join lied
@@ -18,7 +18,8 @@
             inner join kuenstler
             on kuenstler.UArtID = komponieren.UArtID
             where playlist.UPID = '$upid'
-            order by beinhalten.`order`";
+            order by beinhalten.`order`
+        ";
             
         $result = $conn->query($sql);
         
