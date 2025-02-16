@@ -8,8 +8,6 @@ database="octotune"
 username="root"
 password=""
 
-aigen = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B"
-headers = {"Authorization": "Bearer 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"}
 
 def convert_path_to_forward_slashes(path):
     return path.replace("\\", "/")
@@ -251,7 +249,7 @@ def clear_all_tables():
         
         for table in tables:
             table_name = table[0]
-            if table_name == "benutzer" or table_name =="beinhalten" or table_name == "playlist" or table_name == "erstellen":
+            if table_name == "benutzer" or table_name =="beinhalten" or table_name == "playlist" or table_name == "erstellen" or table_name == "speichern" or table_name == "wiedergabeverlauf":
                 continue
             sql = f"TRUNCATE TABLE {table_name}"
             mycursor.execute(sql)

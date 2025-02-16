@@ -176,6 +176,10 @@ input[type="text"], input[type="password"]{
     width: fit-content;
     box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.2);
 }
+.user:hover{
+    cursor: pointer;
+    background-color: rgb(168, 63, 168);
+}
 .welcomeuser{
     font-weight: 600;
     margin: 0.5em;
@@ -338,7 +342,7 @@ input[type="range"]{
 }
 .songcoverwrapperplaybar{
     display: flex;
-    flex:content;
+    flex: content;
     margin:1em;
     height: 50px;
     width: 50px;
@@ -374,6 +378,13 @@ input[type="range"]{
     color: azure;
     background-color: rgba(51, 37, 50, 0.9);
     border: 1px solid black;
+}
+.favorites button:hover{
+    background-color: rgb(32, 27, 32);
+    color: azure;
+}
+.playlistbutton:hover{
+    background-color: rgb(32, 27, 32);
 }
 .spacebetweensideandlist{
     min-width: 3%;
@@ -495,8 +506,10 @@ input[type="range"]{
     display: flex;
     flex-direction: row;
     color: azure;
-    margin: 0.5em;
     width: 100%;
+    height: 2em;
+    padding: auto;
+    padding: 0.5em;
 
 }
 .playlists{
@@ -521,7 +534,6 @@ input[type="range"]{
     justify-content: space-between;
     align-items: center;
     margin: 0.5em;
-    padding: 0.5em;
     border: 1px solid black;
     border-radius: 10px;
     background-color: rgb(53, 43, 52);
@@ -565,7 +577,6 @@ input[type="range"]{
 ::-webkit-scrollbar-thumb:hover {
     border-radius: 5px;
     background: #555;
-    margin: 0.5em;
 }
 .song{
     display: flex;
@@ -752,14 +763,18 @@ input[type="range"]{
     display: flex;
     justify-content: right;
     align-items: flex-end;
-    height: 100%;
     z-index: 500;
-    min-width: fit-content;
+    margin: auto;
+}
+.playlist_delete img:hover{
+    cursor: pointer;
+    filter: invert(60%);
+    background-color: rgb(80, 255, 109);
+    border-radius: 50%;
 }
 
 .playlist_delete img{
     height: 24px;
-    align-items: end;
     width: 24px;
     filter: invert(90%);
 }
@@ -787,12 +802,13 @@ input[type="range"]{
 }
 .createplaylist input[type="text"]{
     background-color: rgb(53, 43, 52);
-    color : rgba(240, 255, 255, 0.9);
-    font-size: 1.5rem;
-    font-weight:600;
+    color: rgba(240, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
     border: none;
     margin: auto;
-    padding: 1rem;
+    padding: 0.3rem;
+    width: 65%;
     max-width: 80%;
 }
 
@@ -801,10 +817,10 @@ input[type="range"]{
     background-color: rgb(53, 43, 52);
     border: none;
     color : rgba(240, 255, 255, 0.9);
-    height: 95%;
-    width: 20%;
+    min-height: 50%;
+    min-width: 20%;
     margin: auto;
-    padding: 0;
+    padding: 0.5em;
 }
 .createplaylist button:hover{
     background-color: rgb(32, 27, 32);
@@ -814,4 +830,144 @@ input[type="range"]{
 .createplaylistwrapper nobr{
     width : 100%;
     height: 100%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    height: fit-content;
+    max-height: 50%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 20px;
+
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: rgb(247, 193, 235);
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-content .playlist{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em auto 0.5em auto;
+    padding: 0;
+    height: 3em;
+    width: 90%;
+}
+.modal-content h3, .modal-content-user h3{
+    text-align:center;
+}
+
+
+.modal-content-user {
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    min-width: fit-content;
+    width: 40%;
+    height: fit-content;
+    max-height: 50%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 20px;
+
+}
+
+.renameUser{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5em auto 0.5em auto;
+    padding: 0;
+    height: 3em;
+    width: 90%;
+    min-width: fit-content;
+}
+.renameUser input[type="text"]{
+    background-color: rgb(53, 43, 52);
+    color: rgba(235, 241, 241, 0.9);
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    margin: auto;
+    padding: 0.3rem;
+    width: 65%;
+    max-width: 80%;
+    height: 2.5em;
+}
+
+.renameUser button{
+    border-radius: 10px;
+    background-color: rgb(53, 43, 52);
+    border: none;
+    color : rgba(235, 241, 241, 0.9);
+    min-width: 20%;
+    margin: 1em;
+    padding: 1em
+}
+.renameUser button:hover{
+    background-color: rgb(32, 27, 32);
+    color: azure;
+    cursor: pointer;
+}
+
+.renameUser label{
+    color: azure;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5em;
+    padding: 1em;
+    background-color: rgba(53, 43, 52);
+    border-radius: 5px;
+    border-radius: 1px solid black;
+}
+.deleteUser{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4em auto 0.5em auto;
+    
+}
+.deleteUser button{
+    border-radius: 10px;
+    background-color: rgb(53, 43, 52);
+    border: none;
+    color : rgba(235, 241, 241, 0.9);
+    min-width: 20%;
+    margin: 1em;
+    height: 4em;
+    width: 12em;
+}
+.deleteUser button:hover{
+    background-color: rgb(32, 27, 32);
+    color: azure;
+    cursor: pointer;
 }

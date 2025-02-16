@@ -28,10 +28,7 @@
  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login - Octotune</title>
 	<link rel="stylesheet" href="./src/css/style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="shortcut icon" href="./src/logo/logonotext.png" type="image/x-icon">
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body class="login">
 	<header class="login">
@@ -65,11 +62,10 @@
 						
 						$username = $_POST['username'];
 						$password = hash('sha256', $_POST['password']);
-						echo $password;
 						$sql = "SELECT * FROM benutzer WHERE username = '$username' AND password = '$password'";
 						$result = $conn->query($sql);
 						if ($result->rowCount() == 0){
-							echo "<p>Invalid username or password!</p>";
+							echo "<p style='text-align: center;'>Invalid username or password!</p>";
 						}
 						else{
 							$uuid = $result->fetchColumn(0);
@@ -83,7 +79,7 @@
 	</main>
 	<footer class="loginfooter">
 		<div>
-			<p>2024 OctoTune</p>
+			<p>2024 - 2025 OctoTune</p>
 		</div>
 	</footer>
 </body>

@@ -9,20 +9,21 @@
         $conn = new PDO("mysql:host=".servername."; dbname=".dbname, username, password);
         
         $sql = "
-            SELECT *, lied.coverPath
-            FROM lied inner join komponieren 
-            ON lied.USID = komponieren.USID
-            inner join kuenstler
-            ON komponieren.UArtID = kuenstler.UArtID
-            inner join enthalten
-            ON lied.USID = enthalten.USID
-            inner join album
-            ON enthalten.UAlbID = album.UAlbID
+            SELECT DISTINCT *, lied.coverPath
+            FROM lied 
+            INNER JOIN komponieren ON lied.USID = komponieren.USID
+            INNER JOIN kuenstler ON komponieren.UArtID = kuenstler.UArtID
+            INNER JOIN enthalten ON lied.USID = enthalten.USID
+            INNER JOIN album ON enthalten.UAlbID = album.UAlbID
+            LEFT JOIN beinhalten ON lied.USID = beinhalten.USID
+            LEFT JOIN playlist ON playlist.UPID = beinhalten.UPID
             WHERE lied.songName LIKE '%$searchtext%'
             OR kuenstler.artistName LIKE '%$searchtext%'
             OR lied.genre LIKE '%$searchtext%'
             OR album.albumName LIKE '%$searchtext%'
             OR lied.releaseDate LIKE '%$searchtext%'
+            OR playlist.playlistName LIKE '%$searchtext%'
+            GROUP BY lied.USID
             ORDER BY RAND() LIMIT 10";
         $result = $conn->query($sql);
         
