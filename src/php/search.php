@@ -24,7 +24,7 @@
             OR lied.releaseDate LIKE '%$searchtext%'
             OR playlist.playlistName LIKE '%$searchtext%'
             GROUP BY lied.USID
-            ORDER BY RAND() LIMIT 10";
+            ORDER BY lied.songName DESC LIMIT 10";
         $result = $conn->query($sql);
         
         $songs = array();

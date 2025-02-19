@@ -8,6 +8,11 @@
         
         $upid = $_GET['UPID'];
         $uuid = $_COOKIE['uuid'];
+
+        $sql = "
+            DELETE FROM beinhalten
+            WHERE UPID = '$upid'";
+        $conn->exec($sql);
         
         $sql = "
             DELETE FROM erstellen

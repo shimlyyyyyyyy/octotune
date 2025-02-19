@@ -132,8 +132,8 @@
 				listSongs(songs); //zeigt lieder an
 			}
 
-			async function listSongs(songs) {
-				songs = songs; //setzt die globalen songs auf die übergebenen songs
+			async function listSongs(songList) {
+				songs = songList; //setzt die globalen songs auf die übergebenen songs
 				const songlist = document.getElementById("songlist"); //songliste ausgewählt
 				songlist.innerHTML = ""; //leert die songliste
 				for (let i = 0; i < songs.length; i++){ //fügt alle songs in die songliste ein
@@ -318,7 +318,6 @@
 
 			function setTimestamp(event) { //setzt den Zeitstempel des Liedes
 				if (sound) { //wenn ein Lied abgespielt wird
-					const progress = document.getElementById("progress"); //holt die Fortschrittsanzeige
 					const rect = progressbar.getBoundingClientRect(); //holt die Position der Fortschrittsanzeige
 					const offsetX = event.clientX - rect.left; //berechnet die Position des Klicks
 					const width = rect.width; //holt die Breite der Fortschrittsanzeige
