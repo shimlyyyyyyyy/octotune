@@ -162,7 +162,7 @@
 								<img src="./src/img/bin.png" alt="delete" class="songbuttonimg">
 							</button>` : ''}
 							<button class="songbutton" onclick="playNext('${song.songName}', '${song.artistName}', '${song.filePath}', '${song.coverPath}', ${i}, ${song.USID})"> 
-								<img src="./src/img/next.png" alt="next" class="songbuttonimg">
+								<img src="./src/img/nextsong.png" alt="next" class="songbuttonimg">
 							</button>
 						</div>
 					</div>
@@ -208,6 +208,7 @@
 				songtitle.innerHTML = title; 
 				const artistname = document.getElementById("artist");
 				artistname.innerHTML = artist;
+				artistname.onclick = function() {showArtist(artist)}; //wenn auf den Künstlernamen geklickt wird, werden alle Songs des Künstlers angezeigt
 				const songcover = document.getElementById("songcoverplaybar");
 				songcover.src = cover;
 			}
@@ -217,7 +218,7 @@
 				if (sound) {
 					var seek = sound.seek() || 0; //holt den aktuellen Fortschritt des Liedes, gibt es keins, wird er auf 0 gesetzt
 					var width = (((seek / sound.duration()) * 100) || 0) + "%"; //berechnet die Breite des Fortschrittsbalkens
-					progressbar.style.backgroundImage = `linear-gradient(to right, rgba(107, 19, 103, 0.6) ${width},rgba(168, 63, 168) ${width})`; //markiert den Fortschritt des Liedes
+					progressbar.style.backgroundImage = `linear-gradient(to right, rgba(107, 19, 103, 0.6) ${width},rgba(168, 63, 168, 0) ${width})`; //markiert den Fortschritt des Liedes
 					requestAnimationFrame(updateProgress); //startet die Aktualisierung der Fortschrittsanzeige
 				}
 			}

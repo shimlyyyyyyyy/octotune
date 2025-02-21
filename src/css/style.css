@@ -466,7 +466,6 @@ input[type="range"]{
     width: 20%;
     height: 100%;
     bottom: 0;
-    z-index: 10;
     min-width: fit-content;
 }
 
@@ -477,7 +476,6 @@ input[type="range"]{
     width: 100%;
     height: 100%;
     bottom: 0;
-    z-index: 1;
     min-width: fit-content;
 }
 
@@ -491,6 +489,7 @@ input[type="range"]{
     background-color: rgb(168, 63, 168);
     margin: 0.5em;
     box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 .playerbuttons button img{
